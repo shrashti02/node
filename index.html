@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissor Spock Lizard</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <section>
+        <header>
+            <h2>
+                Rock Paper Scissor Spock Lizard Game
+            </h2>
+        </header>
+        <div class="container">
+            <div class="list">
+                <section>Rock</section>
+                <section>paper</section>
+                <section>scissors</section>
+            </div>
+            <div class="score-board">
+                <div id="computer-label" class="badge">Computer:
+                    <span id="computer-score">
+                        0
+                    </span>
+                </div>
+                <div id="user-label" class="badge">User:
+                    <span id="user-score">
+                        0
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="choices">
+            <div id="rock" class="i" title="Rock">
+                <i class="fa-solid fa-hand-back-fist fa-3x"></i>
+                <label for="">Rock</label>
+            </div>
+            <div id="paper" class="i" title="Paper">
+                <i class="fa-solid fa-hand fa-3x"></i>
+
+                <label for="">Paper</label>
+            </div>
+            <div id="siccor" class="i" title="Siccor">
+                <i class="fa-solid fa-hand-scissors fa-3x"></i>
+
+                <label for="">Siccor</label>
+            </div>
+            <div id="lizard" class="i" title="Lizard">
+                <i class="fa-solid fa-hand-lizard fa-3x"></i>
+
+                <label for="">Lizard</label>
+            </div>
+            <div id="spock" class="i" title="Spock">
+                <i class="fa-solid fa-hand-spock fa-3x"></i>
+
+                <label for="">Spock</label>
+            </div>
+        </div>
+
+        <div class="result">
+            <p class="user-choice">
+                paper covers rock. you win
+            </p>
+            <p class="computer-choice">
+                paper covers rock. you win
+            </p>
+            <h5 class="status">status</h5>
+        </div>
+    </section>
+    <script src="./app.js">
+
+    </script>
+</body>
+
+</html>
