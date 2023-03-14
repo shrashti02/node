@@ -1,1 +1,10 @@
-name: 
+name: workflow
+on: push
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print greeting
+        run: echo "HELLO WORLD"
+      - name: print goodbye
+        run: echo "Done - bye!"
