@@ -1,12 +1,42 @@
-name: Test Project
-on: push
+name: Git Tag via Commit Id
+
+on:
+  workflow_dispatch:
+    inputs:
+      GIT_BRANCH:
+        type: choice
+        description: Branch
+        required: true
+        options:
+        - release/next
+        - hotfix/next
+      TAG_ID:
+        description: Tag ID
+        required: true
+
 jobs:
- test:
-  runs-on: ubuntu-latest
-  steps:
-   - name: Get code
-     uses: actions/checkout@v3
-   - name: Install NodeJS
-     uses: actions/setup-node@v3
-     with:
-       node-version: 18
+  production:
+    name: Tagging
+    runs-on: self-hosted
+    env:
+      ci_tag_id: ${{ inputs.TAG_ID }}
+      ci_git_branch: ${{ inputs.GIT_BRANCH }}
+    steps:
+      - name: Check workspace
+        shell: bash 
+        run: |
+          echo "Your current workspace is %CD%"
+          echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+          dir ${{ github.workspace }}
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+         
+      - name: Commands
+        shell: bash
+        run: |
+          git checkout ${{ inputs.TAG_ID }}
+          git status
+          git pull origin ${{ inputs.GIT_BRANCH }}
+          git fetch --all
+          git tag ${{ inputs.TAG_ID }}
+          git push origin ${{ inputs.TAG_ID }}
