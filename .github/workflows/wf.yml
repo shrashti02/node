@@ -17,7 +17,7 @@ on:
 jobs:
   production:
     name: Tagging
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     env:
       ci_tag_id: ${{ inputs.TAG_ID }}
       ci_git_branch: ${{ inputs.GIT_BRANCH }}
