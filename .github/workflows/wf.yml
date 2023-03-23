@@ -3,6 +3,13 @@ name: Git Tag via Commit Id
 on:
   workflow_dispatch:
     inputs:
+      GIT_BRANCH:
+        type: choice
+        description: Branch
+        required: true
+        options:
+        - release/next
+        - hotfix/next
       TAG_ID:
         description: Tag ID
         required: true
@@ -10,9 +17,10 @@ on:
 jobs:
   production:
     name: Tagging
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     env:
       ci_tag_id: ${{ inputs.TAG_ID }}
+      ci_git_branch: ${{ inputs.GIT_BRANCH }}
     steps:
       - name: Check workspace
         shell: bash 
@@ -26,9 +34,9 @@ jobs:
       - name: Commands
         shell: bash
         run: |
-          git checkout main
+          git checkout ${{ inputs.TAG_ID }}
           git status
-          git pull origin main
+          git pull origin ${{ inputs.GIT_BRANCH }}
           git fetch --all
           git tag ${{ inputs.TAG_ID }}
           git push origin ${{ inputs.TAG_ID }}
